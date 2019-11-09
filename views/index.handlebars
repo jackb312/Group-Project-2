@@ -1,4 +1,36 @@
-<div id="home">
+<nav class="nav row" style="background-color: black; height:fit-content; margin:0%; padding:1%;">
+  <div class="col">
+    <div class="row" style="margin:0%">
+      <h1 style="color: white; margin:auto; margin-bottom:2%">Game Catalog</h1>
+    </div>
+    <div class="row">
+      <div class="col">
+        <input class="form-control" type="text" id="searchBar" placeholder="Search..." style="background-color:lightgrey; height:80%; width:150px;">
+      </div>
+      <div class="col">
+        <div style="background-color: lightgrey; height:fit-content; width:max-content; font-weight:500;">
+          <button class="btn" onclick="showPage1()">page1</button>
+        </div>
+      </div>
+      <div class="col">
+        <div style="background-color: lightgrey; height:fit-content; width:max-content; font-weight:500;">
+          <button class="btn" onclick="showPage2()">page2</button>
+        </div>
+      </div>
+  </div>
+</nav>
+
+{{!-- page1 --}}
+<div id="page1" class="rounded-pill" style="border-style:solid; border-color:black; color:white; background-color:dimgray; margin:2%; text-align:center; display: block;">
+  test for page 1
+</div>
+
+{{!-- page2 --}}
+<div id="page2" class="rounded-pill" style="border-style:solid; border-color:black; color:white; background-color:dimgray; margin:2%; text-align:center; display:none;">
+  test for page 2
+</div>
+
+{{!-- <div id="home">
   <div class="container">
     <div class="row">
       <div class="col-8 offset-2">
@@ -27,7 +59,6 @@
       </div>
     </div>
   </div>
-</div>
+</div> --}}
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="/js/index.js"></script>
