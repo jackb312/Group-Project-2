@@ -4,7 +4,7 @@ A Full stack web application that serves as a personal video game library to kee
 Direct link to app: 
 
 ## Home page 
-<img width="1346" alt="Screenshot of Finished App" src=
+https://floating-hamlet-19280.herokuapp.com/
 
 ### Result:
 
