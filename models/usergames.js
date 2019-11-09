@@ -35,6 +35,10 @@ module.exports = function(sequelize, DataTypes) {
         type: DataTypes.STRING(255),
         allowNull: false
     },
+    game_image: {
+        type: DataTypes.TEXT,
+        allowNull: false
+    }
   });
   return userGames;
 };
