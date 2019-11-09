@@ -1,7 +1,7 @@
 {
   "development": {
     "username": "root",
-    "password": "Huskies03!",
+    "password": "Jdb12345!",
     "database": "usergames",
     "host": "localhost",
     "dialect": "mysql"
