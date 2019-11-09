@@ -20,15 +20,33 @@
   </div>
 </nav>
 
-{{!-- page1 --}}
-<div id="page1" class="rounded-pill" style="border-style:solid; border-color:black; color:white; background-color:dimgray; margin:2%; text-align:center; display: block;">
-  test for page 1
-</div>
 
-{{!-- page2 --}}
-<div id="page2" class="rounded-pill" style="border-style:solid; border-color:black; color:white; background-color:dimgray; margin:2%; text-align:center; display:none;">
-  test for page 2
+<!-- ==============================================
+		Played Video Games
+=============================================== -->
+<div class='row rounded-pill'style="border-style:solid; border-color:black; color:white; background-color:dimgray; margin:2%; text-align:center; display:block;" id='played-container'>
+ Test
+  {{#each games}}
+		{{#if this.game}}
+			<div class="col-lg-1 col-md-2 col-sm-6 col-xs-12" id="game-box">
+       			<div class="played-box">
+					<div class="card" id="played-form">
+						<form action="/{{this.id}}?_method=PUT" method="POST" >
+                        	
+							<img class="img-responsive" id="played-games" src={{this.game_poster}}>
+                        	<a href="/" class="overlay link" id="unwatch"><button type="submit" class="btn" id="unplay-btn">Unwatch it</button></a>
+
+                    	</form>
+					</div>
+				</div>
+			</div>
+		{{/if}}
+	{{/each}}
+
 </div>
+	
+	
+</main>
 
 {{!-- <div id="home">
   <div class="container">
