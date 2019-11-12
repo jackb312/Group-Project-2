@@ -1,4 +1,54 @@
-<div id="home">
+<nav class="nav row" style="background-color: black; height:fit-content; margin:0%; padding:1%;">
+  <div class="col">
+    <div class="row" style="margin:0%">
+      <h1 style="color: white; margin:auto; margin-bottom:2%">Game Catalog</h1>
+    </div>
+    <div class="row">
+      <div class="col">
+        <input class="form-control" type="text" id="searchBar" placeholder="Search..." style="background-color:lightgrey; height:80%; width:150px;">
+      </div>
+      <div class="col">
+        <div style="background-color: lightgrey; height:fit-content; width:max-content; font-weight:500;">
+          <button class="btn" onclick="showPage1()">page1</button>
+        </div>
+      </div>
+      <div class="col">
+        <div style="background-color: lightgrey; height:fit-content; width:max-content; font-weight:500;">
+          <button class="btn" onclick="showPage2()">page2</button>
+        </div>
+      </div>
+  </div>
+</nav>
+
+
+<!-- ==============================================
+		Played Video Games
+=============================================== -->
+<div class='row rounded-pill'style="border-style:solid; border-color:black; color:white; background-color:dimgray; margin:2%; text-align:center; display:block;" id='played-container'>
+ Test
+  {{#each games}}
+		{{#if this.game}}
+			<div class="col-lg-1 col-md-2 col-sm-6 col-xs-12" id="game-box">
+       			<div class="played-box">
+					<div class="card" id="played-form">
+						<form action="/{{this.id}}?_method=PUT" method="POST" >
+                        	
+							<img class="img-responsive" id="played-games" src={{this.game_poster}}>
+                        	<a href="/" class="overlay link" id="unwatch"><button type="submit" class="btn" id="unplay-btn">Unwatch it</button></a>
+
+                    	</form>
+					</div>
+				</div>
+			</div>
+		{{/if}}
+	{{/each}}
+
+</div>
+	
+	
+</main>
+
+{{!-- <div id="home">
   <div class="container">
     <div class="row">
       <div class="col-8 offset-2">
@@ -27,7 +77,6 @@
       </div>
     </div>
   </div>
-</div>
+</div> --}}
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="/js/index.js"></script>

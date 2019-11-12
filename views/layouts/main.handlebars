@@ -3,13 +3,37 @@
 
 <head>
   <meta charset="utf-8">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" href="/styles/styles.css" media="screen" title="no title" charset="utf-8">
   <title>Home Page</title>
 </head>
 
-<body>
+<body style="background-color: darkgrey;">
   {{{body}}}
 </body>
 
+<script>
+  var page1 = document.getElementById("page1");
+  var page2 = document.getElementById("page2");
+
+  function showPage1() {
+      //if page1 is none AND page2 is block
+      if (page1.style.display === "none" && page2.style.display === "block") {
+          //show page1
+          page1.style.display = "block";
+          //hide page2
+          page2.style.display = "none";
+      }
+  }
+
+  function showPage2() {
+          //if page2 is none AND page1 is block
+          if (page2.style.display === "none" && page1.style.display === "block") {
+              //show page2
+              page2.style.display = "block";
+              //hide page1
+              page1.style.display = "none";
+          }
+  }
+</script>
 </html>
