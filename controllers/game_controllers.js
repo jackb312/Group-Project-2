@@ -5,14 +5,20 @@ var express = require("express");
 var router = express.Router();
 var request = require("request");
 var db = require("../models");
+
 router.get('/', function(req, res) {
-  db.userGames.findAll({
-      order: 'game ASC'
+  console.log(db.usergames);
+  
+  db.usergames.findAll({
+      order: [['guid', 'ASC']]
   }).then(function(data) {
       var hbsObject = {
           games: data
       };
       res.render('index', hbsObject);
+  }).catch(function(err){
+    console.log(err);
+    res.sendStatus(500);
   });
 });
 /*router.get('/rating', function(req, res) {
@@ -36,10 +42,10 @@ router.get('/platform', function(req, res) {
       res.render('index', hbsObject);
   });
 });*/
-router.post("api/new/game", function(req, res){
+router.post("/api/new/game", function(req, res){
   var game = req.body.name;
   var queryURL = "https://www.giantbomb.com/api/search/?api_key=f849b1f445d9804d97aafaf0673137415110e288&format=json&query="+game+"&resoureces=game"
-  request(queryUrl, function(error, response, body) {
+  request(queryURL, function(error, response, body) {
     if (!error && JSON.parse(body).Response !== 'False') {
       console.log(JSON.parse(body));
       request(options, function(error, response, result) {
@@ -47,14 +53,19 @@ router.post("api/new/game", function(req, res){
         if (!JSON.parse(result).results) {
             res.redirect('/')
         } else {
-          db.userGames.create({
+          db.usergames.create({
             game: JSON.parse(body).name,
             /*platform: JSON.parse(body).Platform,
             game_image: JSON.parse(body).Image,
             game_release: JSON.parse(body).Release,
             game_rating: JSON.parse(body).Ratings[0].Value*/
       }).then(function(){
+
         res.redirect("/");
+
+      }).catch(function(err){
+        res.sendStatus(500);
+        console.log(err);
       });
     }
   });
