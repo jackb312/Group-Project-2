@@ -10,7 +10,7 @@ router.get('/', function(req, res) {
   console.log(db.usergames);
   
   db.usergames.findAll({
-      order: [['guid', 'ASC']]
+      order: [['rating', 'ASC']]
   }).then(function(data) {
       var hbsObject = {
           games: data
@@ -45,30 +45,53 @@ router.get('/platform', function(req, res) {
 router.post("/api/new/game", function(req, res){
   var game = req.body.name;
   var queryURL = "https://www.giantbomb.com/api/search/?api_key=f849b1f445d9804d97aafaf0673137415110e288&format=json&query="+game+"&resoureces=game"
-  request(queryURL, function(error, response, body) {
-    if (!error && JSON.parse(body).Response !== 'False') {
-      console.log(JSON.parse(body));
-      request(options, function(error, response, result) {
-        if (error) res.redirect('/');
-        if (!JSON.parse(result).results) {
-            res.redirect('/')
-        } else {
-          db.usergames.create({
-            game: JSON.parse(body).name,
-            /*platform: JSON.parse(body).Platform,
-            game_image: JSON.parse(body).Image,
-            game_release: JSON.parse(body).Release,
-            game_rating: JSON.parse(body).Ratings[0].Value*/
-      }).then(function(){
+    request(queryURL, function(error, response, body) {
+      if (!error && JSON.parse(body).Response !== 'False') {
+        // console.log("YEAH ITS THIS ONE", JSON.parse(body));
+        //console.log("Is this what you want?!: ", JSON.parse(bod);
+        var options = {
+          method: 'GET',
+          url: "https://www.giantbomb.com/api/search/?api_key=f849b1f445d9804d97aafaf0673137415110e288&format=json&query=",
+          qs: {
+              language: 'en-US',
+          },
+          body: '{}'
+      };
+        request(options, function(error, response, result) {
+          if (error) res.redirect('/');
+          if (!JSON.parse(result).results) {
+              res.redirect('/')
+          } else {
+            db.usergames.create({
+              gameTitle: JSON.parse(body).results[0].image_tags.name,
+              rating: JSON.parse(body).results[0].original_game_rating[0].name,
+              releaseDate: JSON.parse(body).results[0].expected_release_year,
+              platforms: JSON.parse(body).results[0].plats,
+              image: JSON.parse(body).results[0].image.original_url
+              /*gameTitle: res.data.results[0].image_tags.name,
+              rating: res.data.results[0].original_game_rating[0].name,
+              releaseDate:
+                res.data.results[0].expected_release_month +
+                "/" +
+                res.data.results[0].expected_release_day +
+                "/" +
+                res.data.results[0].expected_release_year,
+              platforms: plats,
+              image: res.data.results[0].image.original_url*/
+              /*platform: JSON.parse(body).Platform,
+              game_image: JSON.parse(body).Image,
+              game_release: JSON.parse(body).Release,
+              game_rating: JSON.parse(body).Ratings[0].Value*/
+        }).then(function(){
 
-        res.redirect("/");
+          res.redirect("/");
 
-      }).catch(function(err){
-        res.sendStatus(500);
-        console.log(err);
-      });
-    }
-  });
+        }).catch(function(err){
+          res.sendStatus(500);
+          console.log(err);
+        });
+      }
+    });
   }else{
     console.log("UH-OH...Something went wrong with your game search, please try again...");
     res.redirect("/");
@@ -78,7 +101,7 @@ router.post("/api/new/game", function(req, res){
 router.put("/api/new/played/:id", function(req, res){
   var played = true;
   var ID = req.params.id;
-  db.userGames.update({
+  db.usergames.update({
     played: played,
   }, {where: {id: ID}
   }).then(function(){
@@ -88,7 +111,7 @@ router.put("/api/new/played/:id", function(req, res){
 router.put("/:id", function(req, res){
   var played = false;
   var ID = req.params.id;
-  db.userGames.update({
+  db.usergames.update({
     played: played,
   }, {where: {id: ID}
   }).then(function(){
@@ -97,7 +120,7 @@ router.put("/:id", function(req, res){
 });
 router.delete("/api/new/delete/:id", function(req, res){
   var ID = req.params.id;
-  db.userGames.destroy({
+  db.usergames.destroy({
     where: {id: ID}
   }).then(function(){
     res.redirect("/");
