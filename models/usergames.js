@@ -1,17 +1,17 @@
-var Sequelize = require("sequelize")
+//var Sequelize = require("sequelize")
 module.exports = function(sequelize, DataTypes) {
-  var userGames = sequelize.define("usergames", {
-    id: {
-        type: DataTypes.INTEGER(100),
-        autoIncrement: true,
-        primaryKey: true,
+  var usergames = sequelize.define("usergames", {
+    guid: {
+        type: DataTypes.INTEGER,
+        //autoIncrement: true,
+        //primaryKey: true,
         allowNull: false
-    },
-    game_title: {
+    }
+    /*game_title: {
         type: DataTypes.STRING(255),
         allowNull: false
     },
-    rating: {
+    game_rating: {
         type: DataTypes.INTEGER(4),
         allowNull: false
     },
@@ -26,7 +26,7 @@ module.exports = function(sequelize, DataTypes) {
     game_image: {
         type: DataTypes.TEXT,
         allowNull: false
-    }
+    }*/
   });
-  return userGames;
+  return usergames;
 };
