@@ -7,32 +7,20 @@ module.exports = function(sequelize, DataTypes) {
         primaryKey: true,
         allowNull: false
     },
-    game: {
+    game_title: {
         type: DataTypes.STRING(255),
+        allowNull: false
+    },
+    rating: {
+        type: DataTypes.INTEGER(4),
         allowNull: false
     },
     platform: {
         type: DataTypes.STRING(255),
         allowNull: false
     },
-    review: {
-        type: DataTypes.INTEGER(4),
-        allowNull: false
-    },
     game_release: {
         type: DataTypes.DATE,
-        allowNull: false
-    },
-    company: {
-        type: DataTypes.STRING(255),
-        allowNull: false
-    },
-    genre: {
-        type: DataTypes.STRING(255),
-        allowNull: false
-    },
-    game_character: {
-        type: DataTypes.STRING(255),
         allowNull: false
     },
     game_image: {
