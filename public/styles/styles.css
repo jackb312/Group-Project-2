@@ -1,3 +1,15 @@
 .list-group-item {
   line-height: 2.5;
 }
+
+body {
+  background-image: url("../images/triangular/triangular/triangular.png");
+}
+
+.nav {
+  background-image: url("../images");
+}
+
+#page1, #page2 {
+ background-image: url("../images/footer_lodyas/footer_lodyas/footer_lodyas.png");
+}
