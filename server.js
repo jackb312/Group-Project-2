@@ -27,8 +27,12 @@ app.set("view engine", "handlebars");
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(methodOverride('_method'));
-var routes = require('./controllers/game_controllers.js');
-app.use('/', routes);
+require("./routes/apiRoutes")(app); 
+require("./routes/htmlRoutes")(app);
+/* var apiRoutes = require("./routes/apiRoutes.js"); 
+apiRoutes(app); */
+// var routes = require('./controllers/game_controllers.js');
+// app.use('/', routes);
 // If running a test, set syncOptions.force to true
 // clearing the `testdb`
 if (process.env.NODE_ENV === "test") {

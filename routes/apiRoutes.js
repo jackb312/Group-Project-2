@@ -2,23 +2,29 @@ var db = require("../models");
 
 module.exports = function(app) {
   // Get all examples
-  app.get("/api/examples", function(req, res) {
-    db.Example.findAll({}).then(function(dbExamples) {
-      res.json(dbExamples);
+  app.get("/api/usergames", function(req, res) {
+    db.usergames.findAll({}).then(function(dbusergames) {
+      res.json(dbusergames);
     });
   });
-
+  
+  app.get("/api/usergames/:id", function(req, res) {
+    db.usergames.findAll({ where: { id: req.params.id } }).then(function(dbusergames) {
+      res.json(dbusergames);
+    });
+  });
+  
   // Create a new example
-  app.post("/api/examples", function(req, res) {
-    db.Example.create(req.body).then(function(dbExample) {
-      res.json(dbExample);
+  app.post("/api/usergames", function(req, res) {
+    db.usergames.create(req.body).then(function(dbusergames) {
+      res.json(dbusergames);
     });
   });
 
-  // Delete an example by id
-  app.delete("/api/examples/:id", function(req, res) {
-    db.Example.destroy({ where: { id: req.params.id } }).then(function(dbExample) {
-      res.json(dbExample);
+// Delete an example by id
+  app.delete("/api/usergames/:id", function(req, res) {
+    db.usergames.destroy({ where: { id: req.params.id } }).then(function(dbusergames) {
+      res.json(dbusergames);
     });
-  });
+  }); 
 };

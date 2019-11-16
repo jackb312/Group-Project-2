@@ -11,7 +11,7 @@ module.exports = function(sequelize, DataTypes) {
         
     },
     releaseDate: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
         allowNull: true
     },
     platforms: {
