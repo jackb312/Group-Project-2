@@ -1,4 +1,5 @@
 var db = require("../models");
+var giantAPI = require("../helpers/giantAPI.js")
 
 module.exports = function(app) {
   // Get all examples
@@ -27,4 +28,9 @@ module.exports = function(app) {
       res.json(dbusergames);
     });
   }); 
+
+  app.post("/api/giantbomb/search", async function(req, res) {
+   var results = await giantAPI(req.body.searchTerm);
+    res.json(results);
+  })
 };
